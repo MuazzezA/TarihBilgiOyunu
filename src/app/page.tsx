@@ -72,7 +72,7 @@ export default function Home() {
 
                 {completed && (
                     <p className={styles.completedText}>
-                        Bitti! Tüm bilgiler gezildi.
+                        🎉 Tüm bilgiler gezildi. Milli birlik ve beraberliğimiz daim olsun! 🇹🇷
                     </p>
                 )}
             </div>
