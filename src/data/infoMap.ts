@@ -284,4 +284,20 @@ export const data: Record<string, NodeData> = {
             { id: "ulusal_simgeler", label: "Ulusal simgeler" },
         ],
     },
+    savasta_stratejik_önem: {
+        text: "Dumlupınar Savaşı ve diğer muharebelerdeki stratejik önem, Büyük Taarruz'un başarısını doğrudan etkilemiştir. Bu zafer, Türk ordusunun hareket kabiliyetini artırmış ve düşmanın Anadolu içlerine ilerlemesini engellemiştir.",
+        options: [
+            { id: "dumlupinar_onemi", label: "Dumlupınar Savaşı detayları" },
+            { id: "buyuk_taarruz", label: "Büyük Taarruz genel bilgisi" },
+        ],
+    },
+
+    ulusal_simgeler: {
+        text: "Türkiye'nin ulusal simgeleri, bağımsızlık ve Cumhuriyet bilincini pekiştiren önemli öğelerdir. Bayrak, Anıtkabir, Milli Marş ve çeşitli milli değerler, halkın tarih bilincini ve birlik duygusunu güçlendirir.",
+        options: [
+            { id: "zafer_bayrami_onemi", label: "Zafer Bayramı önemi" },
+            { id: "kulturel_etkiler", label: "Kültürel etkiler" },
+        ],
+    },
+
 };
