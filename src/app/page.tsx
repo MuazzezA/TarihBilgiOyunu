@@ -62,7 +62,7 @@ export default function Home() {
                 <div className={styles.progressBarContainer}>
                     <div
                         className={styles.progressBarFill}
-                        style={{ width: `${progressPercentage}%` }}
+                        style={{width: `${progressPercentage}%`}}
                     />
                 </div>
 
@@ -76,6 +76,23 @@ export default function Home() {
                     </p>
                 )}
             </div>
+            <footer className={styles.footer}>
+                <a
+                    href="https://github.com/muazzezA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.githubLink}
+                >
+                    <div className={styles.iconWrapper}>
+                        <Image
+                            src="/github-mark.png"
+                            alt="GitHub"
+                            width={24}
+                            height={24}
+                        />
+                    </div>
+                </a>
+            </footer>
         </main>
     );
 }
