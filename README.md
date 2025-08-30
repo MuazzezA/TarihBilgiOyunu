@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 30 Ağustos Zafer Bayramı Hobi Projesi
 
-## Getting Started
+Bu proje, Türkiye Cumhuriyeti'nin kuruluş sürecini ve 30 Ağustos Zafer Bayramı'nı interaktif bir şekilde öğrenmeye yönelik bir düğüm (node) tabanlı bilgi yapısı içerir.
 
-First, run the development server:
+## İçerik
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Kurtuluş Savaşı
+- Büyük Taarruz ve Dumlupınar Savaşı
+- Cumhuriyetin ilanı ve inkılaplar
+- Atatürk’ün liderliği ve vizyonu
+- 30 Ağustos Zafer Bayramı ve törenler
+- Kültürel ve sanatsal etkiler
+
+## Veri Yapısı
+
+Projede bilgiler **node** (düğüm) yapısı ile organize edilmiştir. Her node şu alanlara sahiptir:
+
+```ts
+export type NodeOption = {
+    id: string;      // Seçilebilecek diğer node’un ID'si
+    label: string;   // Kullanıcıya gösterilecek seçenek metni
+};
+
+export type NodeData = {
+    text: string;           // Node içeriği (bilgi veya açıklama)
+    options: NodeOption[];  // Kullanıcının seçebileceği diğer node’lar
+};
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Kullanım
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. `data` içindeki `root` node’u ile başla.
+2. `options` içindeki ID’leri takip ederek diğer node’lara geçiş yap.
+3. Node ID’leri kullanılarak içerikler interaktif şekilde gösterilebilir.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Örnek
 
-## Learn More
+```ts
+import { data } from './data';
 
-To learn more about Next.js, take a look at the following resources:
+const rootNode = data['root'];
+console.log(rootNode.text);
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+rootNode.options.forEach(option => {
+    console.log(`${option.label} -> ${data[option.id].text}`);
+});
+```
