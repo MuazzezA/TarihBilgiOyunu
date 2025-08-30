@@ -1,12 +1,26 @@
 "use client";
 
-import { useState } from "react";
-import { data } from "../data/infoMap";
+import { useState, useEffect } from "react";
+import { data, NodeData } from "../data/infoMap";
 import styles from "./page.module.css";
 
 export default function Home() {
+    const allNodeIds = Object.keys(data);
     const [current, setCurrent] = useState("root");
-    const node = data[current];
+    const [visitedNodes, setVisitedNodes] = useState<string[]>([]);
+    const [completed, setCompleted] = useState(false);
+
+    const node: NodeData = data[current];
+    useEffect(() => {
+        if (!visitedNodes.includes(current)) {
+            setVisitedNodes((prev) => [...prev, current]);
+        }
+    }, [current, visitedNodes]);
+
+    const allVisited = visitedNodes.length === allNodeIds.length;
+    const progressPercentage = Math.round(
+        (visitedNodes.length / allNodeIds.length) * 100
+    );
 
     return (
         <main className={styles.main}>
@@ -14,16 +28,42 @@ export default function Home() {
                 <p className={styles.text}>{node.text}</p>
 
                 <div className={styles.options}>
-                    {node.options.map((option) => (
+                    {allVisited && current === allNodeIds[allNodeIds.length - 1] ? (
                         <span
-                            key={option.id}
-                            onClick={() => setCurrent(option.id)}
                             className={styles.optionText}
+                            onClick={() => setCompleted(true)}
                         >
-              {option.label}
+              Tamamla
             </span>
-                    ))}
+                    ) : (
+                        node.options.map((option) => (
+                            <span
+                                key={option.id}
+                                onClick={() => setCurrent(option.id)}
+                                className={styles.optionText}
+                            >
+                {option.label}
+              </span>
+                        ))
+                    )}
                 </div>
+
+                <div className={styles.progressBarContainer}>
+                    <div
+                        className={styles.progressBarFill}
+                        style={{ width: `${progressPercentage}%` }}
+                    />
+                </div>
+
+                <p className={styles.progressText}>
+                    İlerleme: {visitedNodes.length} / {allNodeIds.length} yeni bilgi görüldü
+                </p>
+
+                {completed && (
+                    <p className={styles.completedText}>
+                        Bitti! Tüm bilgiler gezildi.
+                    </p>
+                )}
             </div>
         </main>
     );
