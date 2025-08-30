@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { data, NodeData } from "../data/infoMap";
 import styles from "./page.module.css";
 
@@ -25,6 +26,16 @@ export default function Home() {
     return (
         <main className={styles.main}>
             <div className={styles.container}>
+                <div className={styles.flagWrapper}>
+                    <Image
+                        src="/flag.png"
+                        alt="Bayrak"
+                        width={80}
+                        height={80}
+                        className={styles.flagImage}
+                    />
+                </div>
+
                 <p className={styles.text}>{node.text}</p>
 
                 <div className={styles.options}>
